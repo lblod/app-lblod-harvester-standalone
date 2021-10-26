@@ -37,6 +37,10 @@ defmodule Dispatcher do
   ###############
   # SPARQL
   ###############
+  match "/sparql", %{ layer: :sparql, accept: %{ html: true } } do
+    forward conn, [], "http://frontend/index.html"
+  end
+
   match "/sparql", %{ layer: :sparql, accept: %{ sparql: true } } do
     forward conn, [], "http://database:8890/sparql"
   end
