@@ -54,7 +54,7 @@ To monitor the logs, `docker-compose logs -ft` is your friend,
 ### Running your first harvesting job
 We assume the application is running in dev setup. Go to `http://localhost`. The jobs dashboard should appear.
 To schedule your first job, click 'Create new job'.
-Choose 'Harvest & Publish' and fill in a URL that contains data to harvest. (E.g `https://publicatie.gelinkt-notuleren.vlaanderen.be/Essen/Gemeente/b105a530-1f98-11ec-8016-4117a34b12d5/notulen`)
+Choose 'Harvest & Publish' and fill in a URL that contains data to harvest. (E.g `https://publicatie.gelinkt-notuleren.vlaanderen.be/Vlaams-Brabant/Provincie/77b41550-25e2-11ec-8016-4117a34b12d5/notulen`, & mind trailing spaces)
 Click 'Schedule' and go back to the overview page.
 If everything goes well after a while the job should have the status 'success'.
 A job contains multiple tasks, which you may want to explore in detail later.
@@ -74,22 +74,22 @@ SELECT (COUNT(*) as ?total) WHERE {
 
 ```
 it should return a value greater than 0 if any data was found. Harvesting the same URL twice, will not increase this count. All URI's are unique.
-Let's go a little bit deeper and see whether any information may be found about 'Besluiten'
+Let's go a little bit deeper and see whether any information may be found about 'Agendapunten' tied to a 'Zitting'.
 
 ```
 PREFIX http: <http://www.w3.org/2011/http#>
 PREFIX besluit: <http://data.vlaanderen.be/ns/besluit#>
 PREFIX mandaat: <http://data.vlaanderen.be/ns/mandaat#>
 PREFIX lblodlg: <http://data.lblod.info/vocabularies/leidinggevenden/>
+PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT DISTINCT ?besluit ?title ?publicationDate ?orginalResource ?rationale WHERE {
-  ?besluit a ?besluit:Besluit.
-  OPTIONAL { ?besluit <http://data.europa.eu/eli/ontology#title> ?title. }
-  OPTIONAL { ?besluit besluit:motivering ?rationale. }
-  OPTIONAL { ?besluit <http://data.europa.eu/eli/ontology#date_publication> ?publicationDate. }
-  OPTIONAL { ?besluit <http://lblod.data.gift/vocabularies/besluit/linkToPublication> ?orginalResource. }
+SELECT DISTINCT ?zitting ?dateZitting ?title WHERE {
+  ?zitting a besluit:Zitting.
+  ?zitting besluit:geplandeStart ?dateZitting.
+  ?zitting besluit:behandelt ?agendapunt.
+  ?agendapunt a besluit:Agendapunt.
+  ?agendapunt dct:title ?title.
 }
-ORDER BY DESC(?publicationDate)
 ```
 ### Features
 #### Harvesting jobs
