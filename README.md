@@ -73,7 +73,7 @@ SELECT (COUNT(*) as ?total) WHERE {
 }
 
 ```
-it should return a value greater than 0 if any data was found. Harvesting the same URL twice, will not increase this count. All URI's are unique.
+it should return a total greater than 0 if any data was found. Harvesting the same URL twice, will not increase this count. All URI's are unique.
 Let's go a little bit deeper and see whether any information may be found about 'Agendapunten' tied to a 'Zitting'.
 
 ```
