@@ -53,7 +53,7 @@ To monitor the logs, `docker-compose logs -ft` is your friend,
 
 ## Exploring the application
 ### Running your first harvesting job
-We assume the application is running in dev setup. Go to `http://localhost`. The jobs dashboard should appear.
+We assume the application is running in dev setup. Go to `http://localhost:8080`. The jobs dashboard should appear.
 To schedule your first job, click 'Create new job'.
 Choose 'Harvest & Publish' and fill in a URL that contains data to harvest. (E.g `https://publicatie.gelinkt-notuleren.vlaanderen.be/Vlaams-Brabant/Provincie/77b41550-25e2-11ec-8016-4117a34b12d5/notulen`, & mind trailing spaces)
 Click 'Schedule' and go back to the overview page.
