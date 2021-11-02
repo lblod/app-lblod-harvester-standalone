@@ -6,7 +6,7 @@ The application provides the following features:
 - A sparql endpoint to query the harvested information.
 
 ## pre-requisites
-- [Docker Compose (at least v3.7)](https://docs.docker.com/compose/)
+- [Docker Compose (at least v3.5)](https://docs.docker.com/compose/)
 - 16 gb of RAM recommended
 - The host can access the internet
 
