@@ -7,8 +7,9 @@ The application provides the following features:
 
 ## pre-requisites
 - [Docker Compose (at least v3.5)](https://docs.docker.com/compose/)
-- 16 gb of RAM recommended
+- 16 GB of RAM recommended
 - The host can access the internet
+- At least 8 GB of disk space. (Note: when data gets collected this requirements grows)
 
 The application hasn't been tested on any windows operating system.
 
